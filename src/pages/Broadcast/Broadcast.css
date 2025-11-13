@@ -1,0 +1,230 @@
+:root{
+  --bg-start: #eafbea;
+  --bg-end: #d6f5d6;
+  --sidebar-start: #2e8b57;
+  --sidebar-end: #1f6f43;
+  --accent: #1f6f43;
+  --accent-2: #2e8b57;
+  --card-border: #dce9df;
+  --scroll-thumb: #a4d8a0;
+}
+
+/* Container */
+.broadcast-container {
+  display: flex;
+  height: 88vh;
+  width: 80%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+/* 🌿 Seller Sidebar */
+.seller-list {
+  width: 25%;
+  background: linear-gradient(180deg, var(--sidebar-start), var(--sidebar-end));
+  color: #fff;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.seller-list h3 {
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.18);
+  padding-bottom: 8px;
+}
+
+.seller-item {
+  padding: 14px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.seller-item:hover {
+  transform: translateX(4px);
+  background: rgba(255,255,255,0.22);
+}
+
+.seller-item.active {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* 💬 Message Panel */
+.message-panel {
+  flex: 1;
+  padding: 25px 28px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.message-panel h3 {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 12px;
+  border-bottom: 2px solid rgba(30, 120, 80, 0.06);
+  padding-bottom: 6px;
+}
+
+/* Message area */
+.message-area {
+  flex: 1;
+  background: linear-gradient(180deg, #fbfff9, #f6fbf6);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 18px;
+  overflow-y: auto;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.03);
+}
+
+/* 🗨️ Message Bubbles */
+.message-bubble {
+  padding: 10px 14px;
+  margin: 8px 0;
+  border-radius: 10px;
+  max-width: 76%;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  animation: fadeIn 0.28s ease;
+}
+
+.message-bubble.admin {
+  background: linear-gradient(135deg, #daf8dd, #bff1c7);
+  align-self: flex-end;
+  color: var(--accent-2);
+}
+
+.message-bubble.seller {
+  background: #fff;
+  color: #333;
+  align-self: flex-start;
+  border: 1px solid #eef6ee;
+}
+
+/* ✏️ Message Input Area */
+.message-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.message-input input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d6e9d6;
+  outline: none;
+  transition: 0.18s;
+  font-size: 0.95rem;
+}
+
+.message-input input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(31, 111, 65, 0.18);
+}
+
+.message-input button {
+  padding: 12px 18px;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.22s ease;
+}
+
+.message-input button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(31, 111, 65, 0.12);
+}
+
+/* 🕊️ Empty State */
+.no-seller {
+  margin: auto;
+  font-size: 1.12rem;
+  color: #666;
+  text-align: center;
+}
+
+/* ✨ Scrollbar Styling */
+.message-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-area::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 10px;
+}
+
+/* small animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- Responsive adjustments ---------------- */
+
+/* medium screens */
+@media (max-width: 1024px) {
+  .seller-list { width: 27%; min-width: 180px; padding: 18px; }
+  .message-panel { padding: 18px; }
+}
+
+/* mobile: make seller-list horizontal at top */
+@media (max-width: 768px) {
+  .broadcast-container { flex-direction: column; height: auto; min-height: 100vh; }
+
+  .seller-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 12px;
+    overflow-x: auto;
+    align-items: center;
+    scroll-snap-type: x mandatory;
+    border-radius: 0;
+  }
+
+  .seller-list h3 { display: none; }
+  .seller-item {
+    min-width: auto;
+    white-space: nowrap;
+    padding: 10px 14px;
+    border-radius: 999px;
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    font-size: 0.92rem;
+  }
+
+  .message-panel { padding: 16px; }
+  .message-area { padding: 12px; border-radius: 10px; }
+  .message-bubble { max-width: 86%; font-size: 0.95rem; }
+}
+
+/* very small screens: slightly larger touch targets */
+@media (max-width: 480px) {
+  .seller-item { padding: 12px 16px; font-size: 1rem; border-radius: 12px; }
+  .message-area { min-height: 45vh; }
+}

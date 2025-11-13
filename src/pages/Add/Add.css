@@ -1,0 +1,286 @@
+/* Add.css - NO SCROLL, FITS ANY SCREEN, BEAUTIFUL */
+
+* {
+  box-sizing: border-box;
+}
+
+.add {
+    /* CORRECTED: Use full viewport height */
+    height: 100vh; 
+    width: 100%;
+    max-width: 900px; 
+    margin: auto;
+    padding: 20px;
+    background-color: #f8f9fa; 
+    box-sizing: border-box; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Optional: Ensure body scroll is hidden if this is the only element */
+    /* If you control the body, ensure body { overflow: hidden; } */
+}
+
+.add-form {
+  width: 100%;
+  max-height: calc(100vh - 3rem);
+  background: #ffffff;
+  padding: 1.8rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  overflow: hidden; /* Critical: No scroll */
+}
+
+/* Header */
+.add-header {
+  text-align: center;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.add-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+}
+
+.add-subtitle {
+  margin: 0.4rem 0 0;
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+/* Labels */
+.add-label {
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+}
+
+.add-hint {
+  font-size: 0.775rem;
+  color: #718096;
+  margin: -0.2rem 0 0.6rem;
+  font-style: italic;
+}
+
+/* Image Upload */
+.add-image-upload {
+  cursor: pointer;
+  display: block;
+}
+
+.add-image-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border: 2.5px dashed #cbd5e0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.add-image-container:hover {
+  border-color: #4299e1;
+  background: #ebf8ff;
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(66, 153, 225, 0.2);
+}
+
+.add-image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.add-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.add-image-container:hover .add-image-overlay {
+  opacity: 1;
+}
+
+.add-upload-text {
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Grid: Dynamic & Compact */
+.add-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  flex: 1;
+  min-height: 0; /* Critical for flex children */
+}
+
+.add-section-full {
+  grid-column: 1 / -1;
+}
+
+/* Inputs */
+.add-input,
+.add-select,
+.add-textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.95rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fdfdfe;
+  color: #2d3748;
+  transition: all 0.25s ease;
+}
+
+.add-input:focus,
+.add-textarea:focus,
+.add-select:focus {
+  outline: none;
+  border-color: #4299e1;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.add-textarea {
+  resize: none;
+  min-height: 80px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.add-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b7280'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.9rem;
+  padding-right: 2.5rem;
+}
+
+/* Price with Currency */
+.add-price-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.add-currency {
+  position: absolute;
+  left: 0.9rem;
+  color: #4a5568;
+  font-weight: 600;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.add-input-with-currency {
+  padding-left: 2.4rem !important;
+}
+
+/* Submit Button */
+.add-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* Verified Seller Badge - Improved */
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #28a745, #51d88a);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px; /* pill shape */
+  margin-left: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.verified-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background:  #1f6f43;
+
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.add-btn:hover {
+  background:  #1f6f43;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+}
+
+.add-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .add {
+    padding: 1rem;
+  }
+
+  .add-form {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .add-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .add-title {
+    font-size: 1.35rem;
+  }
+
+  .add-image-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+}
