@@ -3,9 +3,11 @@ import './List.css';
 import { url, currency } from '../../assets/assets';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { FiSave } from 'react-icons/fi'; // Save icon
 
 const List = () => {
   const [list, setList] = useState([]);
+  const [priceEdits, setPriceEdits] = useState({}); // Track edited prices
 
   const fetchList = async () => {
     try {
@@ -34,6 +36,28 @@ const List = () => {
     }
   };
 
+  const updatePrice = async (foodId) => {
+    try {
+      const newPrice = priceEdits[foodId];
+      if (!newPrice) return toast.error("Price cannot be empty");
+
+      const response = await axios.post(`${url}/api/food/update-price`, {
+        id: foodId,
+        price: parseFloat(newPrice),
+      });
+
+      if (response.data.success) {
+        toast.success("Price updated");
+        setPriceEdits(prev => ({ ...prev, [foodId]: '' })); // clear input
+        fetchList();
+      } else {
+        toast.error("Failed to update price");
+      }
+    } catch (error) {
+      toast.error("Network error");
+    }
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -44,9 +68,7 @@ const List = () => {
         <h2>All Foods List</h2>
         <p className="list-count">{list.length} items</p>
       </div>
-
       <div className="list-table">
-        {/* Table Header */}
         <div className="list-table-format title">
           <strong>Image</strong>
           <strong>Name</strong>
@@ -54,21 +76,34 @@ const List = () => {
           <strong>Price</strong>
           <strong>Action</strong>
         </div>
-
-        {/* Table Rows */}
         {list.map((item) => (
           <div key={item._id} className="list-table-format">
             <div className="list-image-wrapper">
-              <img
-                src={`${url}/images/${item.image}`}
-                alt={item.name}
-                className="list-image"
-              />
-              
+              <img src={`${url}/images/${item.image}`} alt={item.name} className="list-image" />
             </div>
             <p className="list-name">{item.name}</p>
             <p className="list-category">{item.category}</p>
-            <p className="list-price">{currency}{item.price}</p>
+
+            {/* Editable Price */}
+            <div className="list-price-wrapper">
+              <input
+                type="number"
+                min="0"
+                value={priceEdits[item._id] ?? item.price}
+                onChange={(e) =>
+                  setPriceEdits(prev => ({ ...prev, [item._id]: e.target.value }))
+                }
+                className="list-price-input"
+              />
+              <button
+                onClick={() => updatePrice(item._id)}
+                className="list-update-btn"
+                title="Save Price"
+              >
+                <FiSave size={18} />
+              </button>
+            </div>
+
             <button
               onClick={() => removeFood(item._id)}
               className="list-remove-btn"
@@ -79,10 +114,7 @@ const List = () => {
           </div>
         ))}
       </div>
-
-      {list.length === 0 && (
-        <p className="list-empty">No food items found.</p>
-      )}
+      {list.length === 0 && <p className="list-empty">No food items found.</p>}
     </div>
   );
 };

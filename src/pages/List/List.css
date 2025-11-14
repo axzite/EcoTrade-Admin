@@ -174,3 +174,49 @@
   .list-table-format { grid-template-columns: 55px 1fr 35px; gap: 0.4rem; }
   .list-price, .list-category { display: none; }
 }
+.list-price-input {
+  width: 70px;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid #a8e6b9;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.list-update-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.list-update-btn:hover {
+  background: #218838;
+}
+
+.list-price-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.list-update-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.list-update-btn:hover {
+  background: var(--accent-dark);
+  transform: scale(1.05);
+}
