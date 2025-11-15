@@ -1,0 +1,76 @@
+/* Dashboard.css - polished UI */
+:root {
+  --bg: #f9fafb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #3B82F6;
+  --shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.dashboard-page { padding: 20px; background: var(--bg); min-height: 100vh; }
+.dashboard-title { font-size: 20px; margin-bottom: 12px; color: #111827; font-weight: 600; }
+
+/* controls */
+.control-row { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+.date-controls { display: flex; gap: 8px; align-items: center; }
+.date-label { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: center; }
+.date-input { border: 1px solid #e5e7eb; padding: 6px 8px; border-radius: 6px; background: #fff; }
+.btn-primary { background: var(--accent); color: #fff; padding: 8px 12px; border-radius: 8px; border: 0; cursor: pointer; }
+.btn-ghost { background: transparent; border: 1px solid #e5e7eb; padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+.control-right { margin-left: auto; display:flex; gap:10px; align-items:center; }
+
+/* stat cards */
+.dash-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.dash-card { background: var(--card); padding: 12px; border-radius: 12px; box-shadow: var(--shadow); min-height: 96px; display:flex; flex-direction:column; justify-content:space-between; transition: transform .12s ease, box-shadow .12s ease; }
+.dash-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(15,23,42,0.08); }
+.loading { background: linear-gradient(90deg, #f3f4f6 25%, #eceff1 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; height: 96px; border-radius:12px; }
+@keyframes shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
+
+.card-row { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.card-label { font-size: 12px; color: var(--muted); }
+.card-value { font-size: 20px; font-weight: 700; margin-top:6px; color:#111827; }
+.card-sub { font-size: 12px; color: var(--muted); margin-top:8px; }
+
+.delta { font-weight:700; font-size:13px; padding:6px 8px; border-radius:8px; color:#064e3b; background:rgba(16,185,129,0.12); }
+.delta.down { color:#7f1d1d; background: rgba(239,68,68,0.08); }
+
+/* small badge */
+.badge { background:#f3f4f6; padding:6px 8px; border-radius:10px; font-size:12px; color:#374151; }
+
+/* sparkline container */
+.sparkline { width:100%; height:40px; margin-top:8px; }
+
+/* main grid */
+.dash-main-grid { display:grid; grid-template-columns: 2fr 1fr; gap:14px; margin-bottom: 16px; }
+.chart-panel, .panel-small { background: var(--card); padding: 12px; border-radius: 12px; box-shadow: var(--shadow); }
+.panel-header { font-weight:600; margin-bottom:8px; color:#111827; }
+
+/* top products */
+.top-products { margin-top:12px; }
+.top-products ul { list-style:none; padding:0; margin:0; }
+.top-product-row { display:flex; justify-content:space-between; padding:8px 6px; border-radius:8px; cursor:pointer; transition: background .12s, transform .08s; }
+.top-product-row:hover, .top-product-row:focus { background:#f8fafc; transform: translateX(4px); outline: none; }
+.tp-name { font-weight:600; color:#111827; }
+.tp-meta { font-size:12px; color:var(--muted); }
+.tp-rev { font-weight:700; color:#111827; }
+
+/* quick insights */
+.quick-insights { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+.insight-card { background:var(--card); padding:12px; border-radius:10px; box-shadow: var(--shadow); }
+.insight-label { font-size:12px; color:var(--muted); }
+.insight-value { font-size:18px; font-weight:700; margin-top:6px; }
+
+/* chart area */
+.chart-area { height: 340px; }
+.pie-area { height: 240px; }
+.chart-footer { margin-top:8px; color:var(--muted); font-size:13px; }
+
+/* accessibility focus */
+:focus { outline: 2px solid rgba(59,130,246,0.18); outline-offset: 3px; }
+
+/* responsive */
+@media (max-width: 980px) {
+  .dash-stats { grid-template-columns: repeat(2,1fr); }
+  .dash-main-grid { grid-template-columns: 1fr; }
+  .quick-insights { grid-template-columns: 1fr; }
+}

@@ -5,32 +5,19 @@
 }
 
 .add {
-    /* CORRECTED: Use full viewport height */
-    height: 100vh; 
-    width: 100%;
-    max-width: 900px; 
-    margin: auto;
-    padding: 20px;
-    background-color: #f8f9fa; 
-    box-sizing: border-box; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Optional: Ensure body scroll is hidden if this is the only element */
-    /* If you control the body, ensure body { overflow: hidden; } */
+  width: 100%;
+  max-width: 900px;
+  margin: 1.25rem auto;          /* give some breathing room from top */
+  padding: 20px;
+  background-color: #f8f9fa;
+  box-sizing: border-box;
+  display: block;                /* let content flow naturally (not centered) */
 }
 
 .add-form {
-  width: 100%;
-  max-height: calc(100vh - 3rem);
-  background: #ffffff;
-  padding: 1.8rem;
-  border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  overflow: hidden; /* Critical: No scroll */
+  padding-bottom: 24px; /* small breathing room only */
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
 }
 
 /* Header */
@@ -130,7 +117,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   flex: 1;
-  min-height: 0; /* Critical for flex children */
+  min-height: 0; /* ensures the grid can shrink inside a scrollable flex child */
 }
 
 .add-section-full {
@@ -199,8 +186,11 @@
 /* Submit Button */
 .add-actions {
   display: flex;
-  justify-content: center;
-  margin-top: 0.5rem;
+  justify-content: flex-end;   /* right align the button */
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f1f5f9; /* subtle divider */
 }
 
 /* Verified Seller Badge - Improved */
@@ -227,33 +217,25 @@
 
 
 .add-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: white;
-  background:  #1f6f43;
-
+  padding: 0.7rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #1f6f43;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 180px;
-  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+  min-width: 140px;
+  box-shadow: 0 6px 18px rgba(31,111,67,0.18);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
 }
 
-.add-btn:hover {
-  background:  #1f6f43;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
-}
-
-.add-btn:active {
-  transform: translateY(0);
-}
+.add-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(31,111,67,0.22); }
+.add-btn:active { transform: translateY(0); box-shadow: 0 6px 18px rgba(31,111,67,0.18); }
 
 /* Responsive */
 @media (max-width: 640px) {
