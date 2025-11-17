@@ -189,7 +189,7 @@ export default function ProductAnalytics() {
     return Object.values(catMap).sort((a, b) => b.revenue - a.revenue);
   }, [products]);
 
-  const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+  const COLORS = ['#2e8b57', '#276d48', '#3da873', '#52c785', '#1f5439', '#40a66d'];
 
   const getPerformanceIndicator = (product) => {
     if (!product || !kpiData.totalProducts) {
@@ -199,8 +199,8 @@ export default function ProductAnalytics() {
     const avgRevenue = kpiData.totalRevenue / kpiData.totalProducts;
     const performance = (Number(product.revenue) || 0) / (avgRevenue || 1);
     
-    if (performance > 1.5) return { label: 'High', color: '#10B981', icon: TrendingUp };
-    if (performance > 0.8) return { label: 'Medium', color: '#F59E0B', icon: TrendingUp };
+    if (performance > 1.5) return { label: 'High', color: '#2e8b57', icon: TrendingUp };
+    if (performance > 0.8) return { label: 'Medium', color: '#52c785', icon: TrendingUp };
     return { label: 'Low', color: '#EF4444', icon: TrendingDown };
   };
 
@@ -261,8 +261,8 @@ export default function ProductAnalytics() {
       {/* KPI Cards */}
       <div style={styles.kpiGrid}>
         <div style={styles.kpiCard}>
-          <div style={styles.kpiIcon}>
-            <DollarSign size={24} color="#3B82F6" />
+          <div style={{...styles.kpiIcon, background: '#e8f5ed'}}>
+            <DollarSign size={24} color="#2e8b57" />
           </div>
           <div>
             <div style={styles.kpiLabel}>Total Revenue</div>
@@ -271,8 +271,8 @@ export default function ProductAnalytics() {
         </div>
         
         <div style={styles.kpiCard}>
-          <div style={styles.kpiIcon}>
-            <Package size={24} color="#10B981" />
+          <div style={{...styles.kpiIcon, background: '#e8f5ed'}}>
+            <Package size={24} color="#276d48" />
           </div>
           <div>
             <div style={styles.kpiLabel}>Units Sold</div>
@@ -281,8 +281,8 @@ export default function ProductAnalytics() {
         </div>
         
         <div style={styles.kpiCard}>
-          <div style={styles.kpiIcon}>
-            <ShoppingCart size={24} color="#F59E0B" />
+          <div style={{...styles.kpiIcon, background: '#e8f5ed'}}>
+            <ShoppingCart size={24} color="#2e8b57" />
           </div>
           <div>
             <div style={styles.kpiLabel}>Total Orders</div>
@@ -291,8 +291,8 @@ export default function ProductAnalytics() {
         </div>
         
         <div style={styles.kpiCard}>
-          <div style={styles.kpiIcon}>
-            <Users size={24} color="#8B5CF6" />
+          <div style={{...styles.kpiIcon, background: '#e8f5ed'}}>
+            <Users size={24} color="#276d48" />
           </div>
           <div>
             <div style={styles.kpiLabel}>Avg Order Value</div>
@@ -512,9 +512,9 @@ export default function ProductAnalytics() {
                       />
                       <Line
                         dataKey="revenue"
-                        stroke="#3B82F6"
+                        stroke="#2e8b57"
                         strokeWidth={3}
-                        dot={{ fill: '#3B82F6', r: 4 }}
+                        dot={{ fill: '#2e8b57', r: 4 }}
                       />
                     </LineChart>
                   </ResponsiveContainer>
@@ -597,7 +597,7 @@ export default function ProductAnalytics() {
                       fontSize: 13
                     }}
                   />
-                  <Bar dataKey="qty" fill="#3B82F6" radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="qty" fill="#2e8b57" radius={[8, 8, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -651,7 +651,7 @@ const styles = {
     width: '48px',
     height: '48px',
     borderRadius: '10px',
-    background: '#f0f7ff',
+    background: '#e8f5ed',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -723,13 +723,14 @@ const styles = {
   },
   btnPrimary: {
     padding: '10px 20px',
-    background: '#3B82F6',
+    background: '#2e8b57',
     color: '#fff',
     border: 'none',
     borderRadius: '8px',
     fontSize: '14px',
     fontWeight: '600',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    transition: 'background 0.2s'
   },
   btnSecondary: {
     padding: '10px 20px',
@@ -743,7 +744,7 @@ const styles = {
   },
   btnExport: {
     padding: '10px 20px',
-    background: '#10B981',
+    background: '#276d48',
     color: '#fff',
     border: 'none',
     borderRadius: '8px',
@@ -752,7 +753,8 @@ const styles = {
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
-    gap: '6px'
+    gap: '6px',
+    transition: 'background 0.2s'
   },
   mainContent: {
     display: 'grid',
@@ -803,8 +805,8 @@ const styles = {
     alignItems: 'center'
   },
   tableRowSelected: {
-    background: '#eff6ff',
-    borderLeft: '3px solid #3B82F6'
+    background: '#e8f5ed',
+    borderLeft: '3px solid #2e8b57'
   },
   tableCell: {
     flex: 1,
@@ -863,8 +865,8 @@ const styles = {
     alignItems: 'center',
     gap: '6px',
     padding: '6px 12px',
-    background: '#ecfeff',
-    color: '#0369a1',
+    background: '#e8f5ed',
+    color: '#276d48',
     borderRadius: '8px',
     fontSize: '13px',
     fontWeight: '600',
@@ -929,7 +931,7 @@ const styles = {
     width: '32px',
     height: '32px',
     borderRadius: '8px',
-    background: '#3B82F6',
+    background: '#2e8b57',
     color: '#fff',
     display: 'flex',
     alignItems: 'center',
@@ -1000,7 +1002,7 @@ const styles = {
     width: '40px',
     height: '40px',
     border: '4px solid #e5e7eb',
-    borderTopColor: '#3B82F6',
+    borderTopColor: '#2e8b57',
     borderRadius: '50%',
     animation: 'spin 0.8s linear infinite'
   },

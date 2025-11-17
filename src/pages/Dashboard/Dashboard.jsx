@@ -17,7 +17,14 @@ import {
   Area
 } from "recharts";
 
-const COLORS = ["#3B82F6", "#06B6D4", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6"];
+const COLORS = [
+  "#2e8b57",   // primary brand green
+  "#276d48",   // dark green
+  "#66c08a",   // mid green
+  "#99d7b3",   // soft green
+  "#c7eddb"    // pale mint
+];
+
 
 function rupee(x = 0) {
   try {
@@ -121,21 +128,32 @@ export default function Dashboard() {
   const ordersDelta = useMemo(() => computeDelta(salesChartData, 3, "orders"), [salesChartData]);
 
   // builds sparkline small chart for stat cards
-  const SmallSpark = ({ dataKey = "sales" }) => (
-    <div className="sparkline" aria-hidden>
-      <ResponsiveContainer width="100%" height={40}>
-        <AreaChart data={salesChartData}>
-          <defs>
-            <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2} />
-              <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <Area type="monotone" dataKey={dataKey} stroke="#3B82F6" fill="url(#grad)" strokeWidth={2} />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
-  );
+  // replace the SmallSpark definition with this
+const SmallSpark = ({ dataKey = "sales" }) => (
+  <div className="sparkline" aria-hidden>
+    <ResponsiveContainer width="100%" height={40}>
+      <AreaChart data={salesChartData}>
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#2e8b57" stopOpacity={0.25} />
+            <stop offset="95%" stopColor="#2e8b57" stopOpacity={0} />
+          </linearGradient>
+        </defs>
+
+        {/* <<< CHANGE: stroke set to brand green */}
+        <Area
+          type="monotone"
+          dataKey={dataKey}
+          stroke="#2e8b57"
+          fill="url(#grad)"
+          strokeWidth={2}
+          dot={false}
+        />
+      </AreaChart>
+    </ResponsiveContainer>
+  </div>
+);
+
 
   if (loading) {
     return (
@@ -273,7 +291,7 @@ export default function Dashboard() {
                 <XAxis dataKey="date" tick={{ fontSize: 12 }} />
                 <YAxis tickFormatter={(v) => (v >= 1000 ? `${v / 1000}k` : v)} />
                 <Tooltip formatter={(v) => rupee(v)} />
-                <Line type="monotone" dataKey="sales" stroke="#3B82F6" strokeWidth={3} dot={{ r: 3 }} />
+                <Line type="monotone" dataKey="sales" stroke="#2e8b57" strokeWidth={3} />
               </LineChart>
             </ResponsiveContainer>
           </div>
